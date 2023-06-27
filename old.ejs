@@ -1682,7 +1682,7 @@
                                                          <ul ondragover="allowDrop(event)" class="question_type_b list-sentence a-black a-nounderline ui-sortable" style="cursor: move;">
                                                             <% supplementaryTabs.exercises[1]["sentences"].forEach(item => { %> 
                                                                <li draggable="true" sequence="<%= item.sequence %>" ondragend="dragEnd()" ondragover="dragOver(event)" ondragstart="dragStart(event)" class="margin-top-10 ui-sortable-li ui-sortable-handle">
-                                                                     <%= item %>
+                                                                     <%= item.text %>
                                                                </li>
                                                             <% }) %>
                                                          </ul>
@@ -1738,8 +1738,8 @@
                                              <hr>
                                              <div class="clearfix">
                                                 <div class="float-right margin-bottom1-5 points font20 sum-points xs-clear">
-												  <strong><span id="q_type_e_score_total">5</span> points</strong>
-												</div>
+												               <strong><span id="q_type_e_score_total">5</span> points</strong>
+												            </div>
                                                 <div class="title">Multiple Choice</div>
                                                 <div class="sub-title">Choose the best answer from the choices given.</div>
                                                 <div class="padding-left-30">
@@ -1768,10 +1768,10 @@
                                                  <% }) %>
                                                 </div>
                                              </div>
-											 <hr class="hidden-xs">
-											 <div class="clearfix text-center">
-												<input name="submit" type="button" value="Submit Answers" class="btn btn-orange rounded-sides btn-lg">
-											 </div>
+                                             <hr class="hidden-xs">
+                                             <div class="clearfix text-center">
+                                                <input id="quizSubmitBtn" name="submit" type="button" value="Submit Answers" class="btn btn-orange rounded-sides btn-lg">
+                                             </div>
                                           </form>
                                        </div>
                                     </div>
@@ -2176,6 +2176,25 @@
         //   img.style.display = 'block';
         //   preloader.style.display = 'none';
         // }
+ 
+      document.getElementById('quizSubmitBtn').addEventListener('click', function(){ 
+         SentenceReOrdering();
+      });
+
+      function SentenceReOrdering() {
+         let all = 0;
+         let li = document.querySelectorAll(".ui-sortable-handle"); 
+         for (let i = 0; i < li.length; i++) { 
+            if(li[i].getAttribute("sequence") == i+1) {
+               all++;
+            } 
+         }
+         
+         if(all == 3) {
+            console.log("correct");
+         }
+      }
+
       </script>
    </body>
 </html>
