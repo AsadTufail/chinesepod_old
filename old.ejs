@@ -1681,7 +1681,7 @@
                                                       <div class="sortable-container">
                                                          <ul ondragover="allowDrop(event)" class="question_type_b list-sentence a-black a-nounderline ui-sortable" style="cursor: move;">
                                                             <% supplementaryTabs.exercises[1]["sentences"].forEach(item => { %> 
-                                                               <li draggable="true" ondragend="dragEnd()" ondragover="dragOver(event)" ondragstart="dragStart(event)" class="margin-top-10 ui-sortable-li ui-sortable-handle">
+                                                               <li draggable="true" sequence="<%= item.sequence %>" ondragend="dragEnd()" ondragover="dragOver(event)" ondragstart="dragStart(event)" class="margin-top-10 ui-sortable-li ui-sortable-handle">
                                                                      <%= item %>
                                                                </li>
                                                             <% }) %>
@@ -1710,13 +1710,12 @@
                                                    <span class="input-group-addon">
                                                       <span class="q_type_d_score_total_hidden hide"><%= index + 1 %></span>
                                                       <div class="jplayer-audio-player jplayer-widget" style="text-align:center;">
-                                                         <audio id="jp_audio_00<%= index %>" preload="metadata" src= <%= item %> ></audio>
+                                                         <audio id="jp_audio_00<%= index %>" preload="metadata" answer="<%= item.answer %>" src=<%= item.link %> ></audio>
                                                          <div class="jp-audio">
                                                             <div class="jp-type-single">
                                                                <div id="jp_interface_645ff345b808e" class="jp-interface">
                                                                   <ul class="jp-controls list-unstyled" style="margin:0;">
                                                                      <li>
-                                                                        
                                                                         <a href="javascript:;" id="btn_expan_play_00<%= index %>" onclick="expanPlayAudio('jp_audio_00<%= index %>', 'btn_expan_play_00<%= index %>');" class="jp-play icon-btn-stroke-wrap" tabindex="1" style="width: 100%;height: 100%">
                                                                         <img class="icon-btn-stroke-default" src="https://chinesepod.com/images/play_button_stroke.svg" style="width: 100%;height: 100%">
                                                                         <img class="icon-btn-stroke-playing" src="https://chinesepod.com/images/play_button_playing.svg" style="width: 100%;height: 100%">
@@ -1747,23 +1746,23 @@
                                                    <% supplementaryTabs.exercises.forEach((exercise, j) => { %>
                                                       <% if (exercise.MCQs) { %>
                                                         <% exercise.MCQs.forEach((mcq, index) => { %>
-                                                   <span class="q_type_e_score_total_hidden hide"><%= index+1 %> </span>
-                                                   <div class="float-left width626 padding-top-10" style="margin-top: 25px;">
-                                                      <p class="multiple-choise-q"><%= index+1 %>. <%= mcq.question %>  </p>
-                                                      <div class="float-right points font15" style="margin-top:-4px;">1 point</div>
-                                                      <p></p>
-                                                      <ul class="span-12 list-assessment">
-                                                         <% mcq.options.forEach((option, j) => { %>
-                                                         <li>
-                                                            <label>
-                                                               <div class="float-left list-radio-cont" style="margin-top:10px;*margin-top:-2px;">
-                                                                  <input type="radio" name="q_<%= index %>" value="1"></div>
-                                                               &nbsp;<%= String.fromCharCode(65 + j) %>: <%= option %>
-                                                            </label>
-                                                         </li>
-                                                         <% }) %>
-                                                      </ul>
-                                                   </div>
+                                                         <span class="q_type_e_score_total_hidden hide"><%= index+1 %> </span>
+                                                         <div class="float-left width626 padding-top-10" style="margin-top: 25px;">
+                                                            <p class="multiple-choise-q"><%= index+1 %>. <%= mcq.question %>  </p>
+                                                            <div class="float-right points font15" style="margin-top:-4px;">1 point</div>
+                                                            <p></p>
+                                                            <ul class="span-12 list-assessment">
+                                                               <% mcq.options.forEach((option, j) => { %>
+                                                               <li>
+                                                                  <label>
+                                                                     <div class="float-left list-radio-cont" style="margin-top:10px;*margin-top:-2px;">
+                                                                        <input type="radio" answer="<%= mcq.answer %>" name="q_<%= index %>" value="1"></div>
+                                                                     &nbsp;<%= String.fromCharCode(65 + j) %>: <%= option %>
+                                                                  </label>
+                                                               </li>
+                                                               <% }) %>
+                                                            </ul>
+                                                         </div>
                                                    <% }) %>
                                                    <% } %>
                                                  <% }) %>

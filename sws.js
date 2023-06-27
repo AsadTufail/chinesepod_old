@@ -161,27 +161,29 @@ http
               },
               {
                 sentences: [
-                  "刷剧这种行为其实不只是放松，有的时候也可能变成一种放纵哦",
-                  "	绝对不是。",
-                  "	你跟我一起去吗？",
+                  { text: "刷剧这种行为其实不只是放松，有的时候也可能变成一种放纵哦", sequence: 3 },
+                  { text: "绝对不是", sequence: 1 },
+                  { text: "你跟我一起去吗", sequence: 2 }
                 ],
               },
               {
                 dictation: [
-                  "http://commondatastorage.googleapis.com/codeskulptor-assets/Epoq-Lepidoptera.ogg",
-                  "http://commondatastorage.googleapis.com/codeskulptor-assets/week7-brrring.m4a",
-                  "http://commondatastorage.googleapis.com/codeskulptor-assets/week7-brrring.m4a",
-                  "http://s3.amazonaws.com/chinesepod.com/4627/382bda1d90b77322a0caad3edb8de2085d23c6ae/mp3/64/chinesepod_8448_expansion_108173_prototype_1652466439.mp3",
+                  { link: "http://commondatastorage.googleapis.com/codeskulptor-assets/Epoq-Lepidoptera.ogg", answer: "辗转反侧"},
+                  { link: "http://commondatastorage.googleapis.com/codeskulptor-assets/week7-brrring.m4a", answer: "辗转反侧"},
+                  { link: "http://commondatastorage.googleapis.com/codeskulptor-assets/week7-brrring.m4a", answer: "辗转反侧"},
+                  { link: "http://s3.amazonaws.com/chinesepod.com/4627/382bda1d90b77322a0caad3edb8de2085d23c6ae/mp3/64/chinesepod_8448_expansion_108173_prototype_1652466439.mp3", answer: "辗转反侧"}
                 ],
               },
               {
                 MCQs: [
                   {
                     question: "夜深了，我_____难以入睡",
+                    answer: "辗转反侧",
                     options: ["辗转反侧", "刷剧", "潜意识", "放纵"],
                   },
                   {
                     question: "夜深了，我_____难以入睡",
+                    answer: "刷剧",
                     options: ["辗转反侧", "刷剧", "潜意识", "放纵"],
                   },
                 ],
