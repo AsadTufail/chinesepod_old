@@ -148,11 +148,15 @@ http
             ],
             exercises: [
               {
-                chinese: ["辗转反侧", "潜意识", "放纵"],
+                chinese: [
+                  { text:"辗转反侧", tag: 2 },
+                  { text:"潜意识", tag: 1 },
+                  { text:"放纵", tag: 3 }
+                ],
                 english: [
-                  "binge watching",
-                  "unconscious mind;subconscious mind;",
-                  "to indulge; to pamper;",
+                  { text: "binge watching", tag: 1 },
+                  { text: "unconscious mind;subconscious mind;", tag: 3 },
+                  { text: "to indulge; to pamper;", tag: 2 }
                 ],
               },
               {

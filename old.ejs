@@ -1616,14 +1616,12 @@
                                        <div class="titlename" style="display:hidden;" titlename="Binge watching » Exercises"></div>
                                        <div class="pull-right xs-clear">
                                           <span class="selected">
-										    <a href="/lessons/binge-watching#exercises-tab/1" title="Simplified" class="text-muted">Simplified</a>
-										  </span> ·
-                                          <span class="">
-										    <a href="/lessons/binge-watching#exercises-tab/2" title="Traditional" class="text-muted">Traditional</a>
-										  </span> ·
-                                          <span class="">
-										    <a href="/lessons/binge-watching#exercises-tab/3" title="Pinyin" class="text-muted">Pinyin</a>
-										  </span>
+                                             <a href="/lessons/binge-watching#exercises-tab/1" title="Simplified" class="text-muted">Simplified</a>
+                                          </span> · <span class="">
+                                             <a href="/lessons/binge-watching#exercises-tab/2" title="Traditional" class="text-muted">Traditional</a>
+                                          </span> · <span class="">
+                                             <a href="/lessons/binge-watching#exercises-tab/3" title="Pinyin" class="text-muted">Pinyin</a>
+                                          </span>
                                        </div>
                                        <h2 class="marT0">Exercises</h2>
                                        <p>NOTE: Reloading this page will randomize the exercises for maximum reusability.</p>
@@ -1637,20 +1635,17 @@
                                                 <div class="padding-left-30 xs-padding-left-0">
                                                    <span class="q_type_a_score_total_hidden hide">5</span>
                                                    <div class="float-left width626">
-                                                      <p>1.  <span class="float-right points">5 points</span></p>
+                                                      <p>1.<span class="float-right points">5 points</span></p>
                                                       <ul class="width210 list-assessment align-r float-left" style="width:200px;">
-
-
-                                                         <!--  -->
                                                          <% supplementaryTabs.exercises[0]["chinese"].forEach(item => { %> 
-                                                         <li style="width:200px;" class="list-assessment-item list-assessment-item-left">
-                                                            <div class="list-assessment-option float-left" style="width:150px;">
-                                                               <span class="float-right"><%= item %></span>
-                                                            </div>
-                                                            <div class="float-right option-connect" style="margin-top:10px;">
-                                                               <img src="https://chinesepod.com/images/icons/connect_off.gif" id="a120357_l#l#120357#0" class="selpoint float-right">
-                                                            </div>
-                                                         </li>
+                                                            <li style="width:200px;" class="list-assessment-item list-assessment-item-left">
+                                                               <div class="list-assessment-option float-left" style="width:150px;">
+                                                                  <span class="float-right"><%= item.text %></span>
+                                                               </div>
+                                                               <div class="float-right option-connect" style="margin-top:10px;">
+                                                                  <img src="https://chinesepod.com/images/icons/connect_off.gif" id="a120357_l#l#120357#0" class="selpoint float-right">
+                                                               </div>
+                                                            </li>
                                                          <% }) %>
                                                      <!--  -->
                                                       </ul>
@@ -1658,10 +1653,10 @@
                                                          <% supplementaryTabs.exercises[0]["english"].forEach(item => { %> 
                                                          <li style="width:340px;" class="list-assessment-item list-assessment-item-right">
                                                             <div style="margin-top:7px;float:left;" class="option-connect">
-															  <img src="https://chinesepod.com/images/icons/connect_off.gif" id="a120357_r#r#120357#2" class="selpoint float-left">
-															</div>
+                                                               <img src="https://chinesepod.com/images/icons/connect_off.gif" id="a120357_r#r#120357#2" class="selpoint float-left">
+                                                            </div>
                                                             <div class="list-assessment-option float-right" style="width:300px;">
-                                                               &nbsp;&nbsp;<%= item %>                                                                                 
+                                                               &nbsp;&nbsp;<%= item.text %>                                                                                 
                                                             </div>
                                                          </li>
 
@@ -1674,23 +1669,21 @@
                                              <hr class="hidden-xs">
                                              <div class="clearfix sortable-container">
                                                 <div class="float-right margin-bottom1-5 points font20 sum-points xs-clear">
-												  <strong><span id="q_type_b_score_total">6</span> points</strong>
-												</div>
+                                                   <strong><span id="q_type_b_score_total">6</span> points</strong>
+                                                </div>
                                                 <div class="title">Sentence Re-ordering</div>
                                                 <div class="sub-title">These sentences are in the wrong order. Move them into the correct order by clicking and dragging.</div>
                                                 <div class="padding-left-30">
                                                    <span class="q_type_b_score_total_hidden hide">6</span>
                                                    <div class="float-left">
-                                                      <p>1.  <span class="float-right points">6 points</span></p>
+                                                      <p>1. <span class="float-right points">6 points</span></p>
                                                       <div style="height:1px;"></div>
                                                       <div class="sortable-container">
                                                          <ul ondragover="allowDrop(event)" class="question_type_b list-sentence a-black a-nounderline ui-sortable" style="cursor: move;">
                                                             <% supplementaryTabs.exercises[1]["sentences"].forEach(item => { %> 
-
-                                                            <li draggable="true" ondragend="dragEnd()" ondragover="dragOver(event)" ondragstart="dragStart(event)" class="margin-top-10 ui-sortable-li ui-sortable-handle">
-                                                                  <%= item %>
-                                                            </li>
-
+                                                               <li draggable="true" ondragend="dragEnd()" ondragover="dragOver(event)" ondragstart="dragStart(event)" class="margin-top-10 ui-sortable-li ui-sortable-handle">
+                                                                     <%= item %>
+                                                               </li>
                                                             <% }) %>
                                                          </ul>
                                                       </div>
