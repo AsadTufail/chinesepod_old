@@ -31,6 +31,16 @@
          .d-none{
             display: none !important;
          }
+         .check-icon {
+            font-size: 23px !important;
+            color: green;
+            background-color: transparent;
+         }
+         .x-icon {
+            font-size: 22px !important;
+            color: red;
+            background-color: transparent;
+         }
       </style>
    </head>
    <body>
@@ -1625,17 +1635,21 @@
                                        </div>
                                        <h2 class="marT0">Exercises</h2>
                                        <p>NOTE: Reloading this page will randomize the exercises for maximum reusability.</p>
+                                       <div id="result-div" class="d-flex justify-content-around d-none"> 
+                                          <h4>The correct answers are highlighted in yellow. Your answers appear just as you submitted them.</h4>
+                                          <h3 class="ml-0">Your Score: <span class="text-danger"><b id="total-score-percentage">0%</b>, <b id="total-score">0</b></span>/15 points</h3>
+                                       </div>
                                        <div id="assessment_content" class="clearfix">
                                           <form id="assessmentForm">
                                              <hr>
                                              <div id="test" class="clearfix">
-                                                <div class="float-right points font20 sum-points xs-clear"><strong><span id="q_type_a_score_total">5</span> points</strong></div>
+                                                <div class="float-right points font20 sum-points xs-clear"><strong><span id="q_type_a_score_total">3</span> points</strong></div>
                                                 <div class="title">Matching</div>
                                                 <div class="sub-title">Choose a word on the left side, then match it to the closest meaning on the right side.</div>
                                                 <div class="padding-left-30 xs-padding-left-0">
                                                    <span class="q_type_a_score_total_hidden hide">5</span>
                                                    <div class="float-left width626">
-                                                      <p>1.<span class="float-right points">5 points</span></p>
+                                                      <p>1.<span class="float-right points">3 points</span></p>
                                                       <ul class="width210 list-assessment align-r float-left" style="width:200px;">
                                                          <% supplementaryTabs.exercises[0]["chinese"].forEach(item => { %> 
                                                             <li style="width:200px;" class="list-assessment-item list-assessment-item-left">
@@ -1699,7 +1713,7 @@
                                              <hr>
                                              <div class="clearfix">
                                                 <div class="float-right margin-bottom1-5 points font20 sum-points xs-clear">
-                                                   <strong><span id="q_type_d_score_total">3</span> points</strong>
+                                                   <strong><span id="q_type_d_score_total">4</span> points</strong>
                                                 </div>
                                                 <div class="title">Dictation</div>
                                                 <div class="sub-title">Listen to the audio and type out what you hear. You may replay the audio as many times as you need. Remember to type in the same character set as you selected above. </div>
@@ -1739,10 +1753,10 @@
                                                 <!--  -->
                                              </div>
                                              <!-- Type E Multiple Choice -->
-                                             <hr>
+                                             <hr> 
                                              <div class="clearfix">
                                                 <div class="float-right margin-bottom1-5 points font20 sum-points xs-clear">
-												               <strong><span id="q_type_e_score_total">5</span> points</strong>
+												               <strong><span id="q_type_e_score_total">2</span> points</strong>
 												            </div>
                                                 <div class="title">Multiple Choice</div>
                                                 <div class="sub-title">Choose the best answer from the choices given.</div>
@@ -1752,6 +1766,7 @@
                                                         <% exercise.MCQs.forEach((mcq, index) => { %>
                                                          <span class="q_type_e_score_total_hidden hide"><%= index+1 %> </span>
                                                          <div class="float-left width626 padding-top-10" style="margin-top: 25px;">
+                                                            <!-- <p class="multiple-choise-q"><i class="fa fa-check check-icon me-2" aria-hidden="true"></i><i class="fa fa-times x-icon me-2" aria-hidden="true"></i> <%= index+1 %>. <%= mcq.question %>  </p> -->
                                                             <p class="multiple-choise-q"><%= index+1 %>. <%= mcq.question %>  </p>
                                                             <div class="float-right points font15" style="margin-top:-4px;">1 point</div>
                                                             <p></p>
@@ -2192,6 +2207,12 @@
          SentenceReOrderingExercise();
          CheckDictationAndMCQSModules();
          // MatchingExercise(); 
+
+         document.getElementById("assessment_content").classList.add("d-none");
+         document.getElementById("result-div").classList.remove("d-none");  
+         let scorePercetage = (Reordering_Score + MCQs_Score + Dictation_Score)/15 * 10;
+         document.getElementById("total-score-percentage").innerText = `${scorePercetage.toFixed(1)}%`;
+         document.getElementById("total-score").innerText = Reordering_Score + MCQs_Score + Dictation_Score;
       });
 
       //Sentence ReOrdering Exercise Result
