@@ -1640,10 +1640,12 @@
                                                          <% supplementaryTabs.exercises[0]["chinese"].forEach(item => { %> 
                                                             <li style="width:200px;" class="list-assessment-item list-assessment-item-left">
                                                                <div class="list-assessment-option float-left" style="width:150px;">
-                                                                  <span class="float-right"><%= item.text %></span>
+                                                                  <label class="float-right" for="<%= item.text %>">
+                                                                     <%= item.text %>
+                                                                   </label> 
                                                                </div>
-                                                               <div class="float-right option-connect" style="margin-top:10px;">
-                                                                  <img src="https://chinesepod.com/images/icons/connect_off.gif" id="a120357_l#l#120357#0" class="selpoint float-right">
+                                                               <div class="float-right option-connect" style="margin-top:10px;"> 
+                                                                  <input class="matching-chinese selpoint float-right" type="radio" value="<%= item.tag %>" id="<%= item.text %>">
                                                                </div>
                                                             </li>
                                                          <% }) %>
@@ -1653,10 +1655,12 @@
                                                          <% supplementaryTabs.exercises[0]["english"].forEach(item => { %> 
                                                          <li style="width:340px;" class="list-assessment-item list-assessment-item-right">
                                                             <div style="margin-top:7px;float:left;" class="option-connect">
-                                                               <img src="https://chinesepod.com/images/icons/connect_off.gif" id="a120357_r#r#120357#2" class="selpoint float-left">
+                                                               <input class="matching-english selpoint float-left" type="radio" value="<%= item.tag %>" id="<%= item.text %>">
                                                             </div>
                                                             <div class="list-assessment-option float-right" style="width:300px;">
-                                                               &nbsp;&nbsp;<%= item.text %>                                                                                 
+                                                               <label class="float-left" for="<%= item.text %>">
+                                                                  <%= item.text %>
+                                                                </label>                                                                                 
                                                             </div>
                                                          </li>
 
@@ -2177,11 +2181,16 @@
         //   preloader.style.display = 'none';
         // }
  
+      let totalScore = 0;
       document.getElementById('quizSubmitBtn').addEventListener('click', function(){ 
-         SentenceReOrdering();
+         totalScore = 0;
+         SentenceReOrderingExercise();
+         // MatchingExercise();
+         console.log(totalScore);
       });
 
-      function SentenceReOrdering() {
+      //Sentence ReOrdering Exercise Result
+      function SentenceReOrderingExercise() {  
          let all = 0;
          let li = document.querySelectorAll(".ui-sortable-handle"); 
          for (let i = 0; i < li.length; i++) { 
@@ -2191,9 +2200,23 @@
          }
          
          if(all == 3) {
-            console.log("correct");
+            totalScore = totalScore + 6; 
          }
       }
+
+      //Matching Exercise Result
+      // function MatchingExercise() {
+         let allChines = document.querySelectorAll(".matching-chinese"); 
+         let allEnglish = document.querySelectorAll(".matching-english");
+         document.getElementById('chines-words').addEventListener('click', function(){
+            console.log("aa");
+            // for (let i = 0; i < allChines.length; i++) {  
+            //    if(allChines[i].checked) {
+            //       console.log(`${allChines[i].value}`);
+            //    }
+            // } 
+          });
+      // }
 
       </script>
    </body>
