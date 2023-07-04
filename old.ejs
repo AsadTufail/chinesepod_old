@@ -1714,7 +1714,7 @@
                                                    <span class="input-group-addon">
                                                       <span class="q_type_d_score_total_hidden hide"><%= index + 1 %></span>
                                                       <div class="jplayer-audio-player jplayer-widget" style="text-align:center;">
-                                                         <audio id="jp_audio_00<%= index %>" preload="metadata" answer="<%= item.answer %>" src=<%= item.link %> ></audio>
+                                                         <audio id="jp_audio_00<%= index %>" class="audio-list" preload="metadata" answer="<%= item.answer %>" src=<%= item.link %> ></audio>
                                                          <div class="jp-audio">
                                                             <div class="jp-type-single">
                                                                <div id="jp_interface_645ff345b808e" class="jp-interface">
@@ -1732,7 +1732,7 @@
                                                          </div>
                                                       </div>
                                                    </span>
-                                                   <input type="text" name="q_type_4_120361_answer" class="form-control ime">
+                                                   <input type="text" name="q_type_4_120361_answer" class="form-control ime dictation-value">
                                                 </div>
                
                                                 <% }) %>
@@ -1760,7 +1760,8 @@
                                                                <li>
                                                                   <label>
                                                                      <div class="float-left list-radio-cont" style="margin-top:10px;*margin-top:-2px;">
-                                                                        <input type="radio" answer="<%= mcq.answer %>" name="q_<%= index %>" value="1"></div>
+                                                                        <input class="radio-button" type="radio" answer="<%= mcq.answer %>" name="q_<%= index %>" value="<%= option%>">
+                                                                     </div>
                                                                      &nbsp;<%= String.fromCharCode(65 + j) %>: <%= option %>
                                                                   </label>
                                                                </li>
@@ -2181,42 +2182,74 @@
         //   preloader.style.display = 'none';
         // }
  
-      let totalScore = 0;
+      let Reordering_Score = 0;
+      let MCQs_Score = 0 
+      let Dictation_Score = 0 
       document.getElementById('quizSubmitBtn').addEventListener('click', function(){ 
-         totalScore = 0;
+         Reordering_Score = 0;
+         MCQs_Score = 0;
+         Dictation_Score = 0;
          SentenceReOrderingExercise();
-         // MatchingExercise();
-         console.log(totalScore);
+         CheckDictationAndMCQSModules();
+         // MatchingExercise(); 
       });
 
       //Sentence ReOrdering Exercise Result
-      function SentenceReOrderingExercise() {  
-         let all = 0;
-         let li = document.querySelectorAll(".ui-sortable-handle"); 
+      function SentenceReOrderingExercise() {   
+         let li = document.querySelectorAll(".ui-sortable-handle");  
          for (let i = 0; i < li.length; i++) { 
             if(li[i].getAttribute("sequence") == i+1) {
-               all++;
+               Reordering_Score = Reordering_Score + 2;
             } 
          }
-         
-         if(all == 3) {
-            totalScore = totalScore + 6; 
-         }
+         console.log(`Reordering_Score: ${Reordering_Score}`)
       }
+
+      //Dictation and MCQS Result function
+      function CheckDictationAndMCQSModules() { 
+         const mcqs = document.querySelectorAll(".radio-button")
+         const audio_list = document.querySelectorAll(".audio-list")
+         const dictation_value = document.querySelectorAll(".dictation-value") 
+
+         for (i = 0; i < mcqs.length; i++) {
+                if (mcqs[i].checked){
+                  if(mcqs[i].getAttribute("answer").replaceAll(/\s/g, "") == mcqs[i].value.replaceAll(/\s/g, "")){
+                     MCQs_Score++
+                     document.getElementById("q_type_e_score_total").innerHTML = MCQs_Score;
+                  }
+                }
+               }
+
+         for (let j = 0; j < audio_list.length; j++) {
+            if (audio_list[j].getAttribute("answer").replaceAll(/\s/g, "") == dictation_value[j].value.replaceAll(/\s/g, "")) {
+               Dictation_Score++
+               document.getElementById("q_type_d_score_total").innerHTML = Dictation_Score;
+            }
+            else{
+               document.getElementById("q_type_d_score_total").innerHTML = Dictation_Score; 
+            }
+
+         } 
+         console.log(`Dictation: ${Dictation_Score}`);
+         console.log(`Multiple Choice: ${MCQs_Score}`); 
+        }
+
 
       //Matching Exercise Result
       // function MatchingExercise() {
-         let allChines = document.querySelectorAll(".matching-chinese"); 
-         let allEnglish = document.querySelectorAll(".matching-english");
-         document.getElementById('chines-words').addEventListener('click', function(){
-            console.log("aa");
+         // let allChines = document.querySelectorAll(".matching-chinese"); 
+         // let allEnglish = document.querySelectorAll(".matching-english");
+         // document.getElementById('chines-words').addEventListener('click', function(){
+         //    console.log("aa");
             // for (let i = 0; i < allChines.length; i++) {  
             //    if(allChines[i].checked) {
             //       console.log(`${allChines[i].value}`);
             //    }
             // } 
-          });
+         //  });
       // }
+
+      
 
       </script>
    </body>
