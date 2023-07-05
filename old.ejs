@@ -2210,8 +2210,11 @@
 
          document.getElementById("assessment_content").classList.add("d-none");
          document.getElementById("result-div").classList.remove("d-none");  
-         let scorePercetage = (Reordering_Score + MCQs_Score + Dictation_Score)/15 * 10;
-         document.getElementById("total-score-percentage").innerText = `${scorePercetage.toFixed(1)}%`;
+         let scorePercetage = (Reordering_Score + MCQs_Score + Dictation_Score)/15 * 10;  
+         if(!Number.isSafeInteger(scorePercetage)) {
+            scorePercetage = scorePercetage.toFixed(1);
+         }
+         document.getElementById("total-score-percentage").innerText = `${scorePercetage}%`;
          document.getElementById("total-score").innerText = Reordering_Score + MCQs_Score + Dictation_Score;
       });
 
